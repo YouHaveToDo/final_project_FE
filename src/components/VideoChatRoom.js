@@ -87,6 +87,7 @@ export default function VideoChatRoom() {
   const endModalState = useSelector((state) => state.group.endModalState);
   const lastPeerId = useSelector((state) => state.user.userInfo.user.peerId);
   const studyRound = useSelector((state) => state.group.round);
+
   //채팅방 open/close - 민지
   const [openChat, setOpenChat] = useState("");
 
@@ -135,7 +136,6 @@ export default function VideoChatRoom() {
   };
 
   useEffect(() => {
-    console.log(lastPeerId);
     dispatch(groupAction.enterRoom(roomId));
     const socket = io(url);
     const peer = new Peer({
@@ -244,14 +244,14 @@ export default function VideoChatRoom() {
           };
           const goodByeinterval = setInterval(timer, 1000);
         });
-        console.log(peer, 1);
+
         if (peer._id == null) {
-          console.log(peer, 2);
           peer.on("open", (peerId) => {
             //소켓을 통해 서버로 방ID, 유저ID 보내주기
-            if (peer._id === null) {
+            if (peer._id == null) {
               peer._id = lastPeerId;
             }
+            myPeerId = peerId;
             socket.emit(
               "join-room",
               roomId,
@@ -263,7 +263,6 @@ export default function VideoChatRoom() {
             );
           });
         } else {
-          console.log(4);
           socket.emit(
             "join-room",
             roomId,

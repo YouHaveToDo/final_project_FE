@@ -21,10 +21,8 @@ function GroupChat({ openChat }) {
   useEffect(() => {
     socket.current = io(url);
     socket.current.emit("join-chatRoom", roomId, userId);
-    socket.current.on("message", (user, message, roomId) => {
-      console.log(user, message);
+    socket.current.on("message", (user, message) => {
       setChat([...chat, { user, message }]);
-      console.log(chat);
       // // 돔을 직접 건드리는 방법
       // const chat_from_friend = document.createElement("div");
       // userId == user
