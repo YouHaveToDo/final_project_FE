@@ -77,7 +77,7 @@ export default function FullWidthTabs() {
           aria-label="full width tabs example"
         >
           <Tab label="내 공부시간" {...a11yProps(0)} />
-          <Tab label="랭킹" {...a11yProps(1)} />
+          <Tab label="주간 랭킹" {...a11yProps(1)} />
         </TabsCustom>
       </AppBarCustom>
       <SwipeableViewsCustom
@@ -151,7 +151,7 @@ const TabsCustom = styled(Tabs)`
 const SwipeableViewsCustom = styled(SwipeableViews)`
   .MuiBox-root {
     *padding: 0.6944vw 2vw;
-    padding:1.5vw;
+    padding: 1.5vw;
     box-sizing: border-box;
   }
 `;
